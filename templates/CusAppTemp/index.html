@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<h2><em> Kanarya  </em> </h2>
+{%if user.is_authenticated%}
+{%if perms.is_superuser%}
+<a href="{% url 'CusApp:AddCustomer' %}">Click here to add a cusomter</a><br>
+
+
+<a href="{% url 'CusApp:Search' %}">Find a customer</a><br>
+
+
+{%endif%}
+{%endif%}
+{%if error%}
+{{error}}
+{%endif%}
+{%if not user.is_authenticated%}
+<a href="{% url "CusApp:login" %}">Login</a>
+<br><br><br><br>
+<a href="{% url "CusApp:signup" %}"> Signup </a>
+{%else%}
+
+
+<a href="{% url "CusApp:CustomerView" user.id %}">Profile</a><br>
+<a href="{% url "CusApp:cart"  %}">Cart</a><br>
+<br><br>
+
+<form method="POST">
+    {%csrf_token%}
+    {%if added is True%}
+    <p>Your item has been added successfuly</p>
+    {%endif%}
+{{form}}
+
+<input type="submit" value="Add to cart">
+
+</form>
+<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br>
+
+
+
+<a href="{% url "CusApp:Logout" %}">logout</a>
+{%endif%}

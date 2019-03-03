@@ -1,0 +1,25 @@
+{{user}}
+
+<br><br>
+
+
+
+{%for i in cart%}
+
+
+{{i.url}}  <br>
+{{i.color}} <br>
+{{i.weight}} <br> <br>
+    <form action="{% url "CusApp:DeleteItem" i.id %}" method="post">
+    {%csrf_token%}
+    <input type="submit"  value="Delete">
+    </form>
+
+
+{%endfor%}
+
+
+<form action="{% url "CusApp:submitted" %}" method="post">
+{%csrf_token%}
+<input type="submit" value="Submit Order">
+</form>

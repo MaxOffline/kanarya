@@ -1,0 +1,25 @@
+<h2> Search for a customer </h2>
+
+
+{%if id%}
+<a href="{% url 'CusApp:CustomerView' id%}">{{name}}</a>
+{%endif%}
+{{error}}
+
+<form action = "" method = "POST">
+    {%csrf_token%}
+    {{search.as_p}}
+
+    <input type = "submit" value = "Search">
+
+</form>
+
+<br>
+
+
+
+
+
+
+
+
